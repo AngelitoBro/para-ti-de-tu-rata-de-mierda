@@ -2,76 +2,23 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carta 💌</title>
-<link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet" href="style.css">
-
-<style>
-/* SOLO estructura básica — sin fondo */
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.carta{
-  width:300px;
-  height:200px;
-  position:relative;
-  cursor:pointer;
-  perspective:1000px;
-}
-
-.sobre{
-  width:100%;
-  height:100%;
-  position:absolute;
-  background:#ffb6c1;
-  transform-origin:top;
-  transition:transform 0.8s;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:20px;
-  border-radius:10px;
-}
-
-.contenido{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:white;
-  padding:20px;
-  box-sizing:border-box;
-  border-radius:10px;
-  transform:translateY(100%);
-  opacity:0;
-  transition:0.8s;
-  overflow:auto;
-}
-
-.abierta .sobre{
-  transform:rotateX(180deg);
-}
-
-.abierta .contenido{
-  transform:translateY(0);
-  opacity:1;
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
 </head>
 <body>
 
 <div class="carta" onclick="abrirCarta(this)">
+  
   <div class="sobre">
     💌 Tócame
   </div>
 
   <div class="contenido">
+    <p>
     Amorcito mio, se que te hago enojar demasiado, se que muchas veces dudas de esto,
     se que te aburro a veces, pero de verdad creeme que yo te quiero y te amo demasiado,
     a pesar de a veces no comprenderte del todo trato de no hacerte enojar o dar colera
@@ -79,29 +26,41 @@ body{
     valga la pena, asi que me estoy esforzando mucho y más de lo que crees para no decepcionarte.
     Espero que comprendas mis palabras y acciones, yo quiero tener una vida feliz contigo x siempre
     a pesar de las peleas q te encantan q te tengamos. Te amo mucho besos mua mua.
+    </p>
+
+    <button onclick="abrazar(event)">🤗 Abrazar</button>
   </div>
+
 </div>
 
-<audio id="cancion" loop>
-  
-  <source src="cancion.mp3" type="audio/mpeg">
-  <source src="cancion.ogg" type="audio/ogg"> 
-    
+<audio id="musica" loop>
+<source src="cancion.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function abrirCarta(carta){
+
   carta.classList.toggle("abierta");
 
-  const musica = document.getElementById("musica");
-  musica.currentTime = 0;
+  let musica=document.getElementById("musica");
   musica.play().catch(()=>{});
+}
+
+function abrazar(e){
+  e.stopPropagation();
+
+  for(let i=0;i<25;i++){
+    let corazon=document.createElement("div");
+    corazon.className="corazon";
+    corazon.innerHTML="💖";
+    corazon.style.left=Math.random()*100+"vw";
+    corazon.style.top=Math.random()*100+"vh";
+    document.body.appendChild(corazon);
+
+    setTimeout(()=>corazon.remove(),2000);
+  }
 }
 </script>
 
 </body>
 </html>
-
-
-
-
