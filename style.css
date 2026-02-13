@@ -1,94 +1,47 @@
-body{
-margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-font-family:'Dancing Script',cursive;
-overflow:hidden;
+/* style.css */
+
+/* Fondo general: noche rosada */
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #ffccd9 0%, #ff99c2 50%, #ff66aa 100%);
+    overflow: hidden;
+    position: relative;
+    font-family: 'Dancing Script', cursive;
 }
 
-/* 💌 carta */
-.carta{
-width:90%;
-max-width:340px;
-height:260px;
-position:relative;
-perspective:1000px;
-z-index:2;
+/* Estrellas estilo pixel */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    animation: twinkle 2s infinite alternate;
 }
 
-/* sobre */
-.sobre{
-width:100%;
-height:100%;
-background:#ffb6c1;
-display:flex;
-justify-content:center;
-align-items:center;
-border-radius:12px;
-font-size:22px;
-transition:0.8s;
-transform-origin:top;
+/* Animación de parpadeo de estrellas */
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+    100% { opacity: 0.3; transform: scale(1); }
 }
 
-/* contenido */
-.contenido{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:white;
-padding:15px;
-box-sizing:border-box;
-border-radius:12px;
-opacity:0;
-transform:translateY(100%);
-transition:0.8s;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-text-align:center;
-font-size:15px;
+/* Luna estilo pixel, arriba derecha */
+.moon {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #fff0e6;
+    border-radius: 50%;
+    box-shadow: -5px -5px 0 #ffe6f0; /* un poco pixelado */
+    animation: moonFloat 4s ease-in-out infinite alternate;
 }
 
-/* abrir carta */
-.abierta .sobre{
-transform:rotateX(180deg);
-}
-
-.abierta .contenido{
-opacity:1;
-transform:translateY(0);
-}
-
-/* boton */
-button{
-border:none;
-padding:8px;
-border-radius:8px;
-background:#ff6fa5;
-color:white;
-font-size:16px;
-}
-
-/* corazones */
-.corazon{
-position:fixed;
-font-size:22px;
-animation:flotar 2s linear forwards;
-pointer-events:none;
-}
-
-@keyframes flotar{
-0%{transform:translateY(0) scale(1);opacity:1;}
-100%{transform:translateY(-150px) scale(1.6);opacity:0;}
-}
-
-/* celular */
-@media(max-width:480px){
-.contenido{
-font-size:14px;
-}
+/* Animación de flotación de la luna */
+@keyframes moonFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
 }
