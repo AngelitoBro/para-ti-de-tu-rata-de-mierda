@@ -12,12 +12,13 @@
 <body>
 
 <div class="carta" onclick="abrirCarta(this)">
-  
+
   <div class="sobre">
     💌 Tócame
   </div>
 
   <div class="contenido">
+
     <p>
     Amorcito mio, se que te hago enojar demasiado, se que muchas veces dudas de esto,
     se que te aburro a veces, pero de verdad creeme que yo te quiero y te amo demasiado,
@@ -29,6 +30,7 @@
     </p>
 
     <button onclick="abrazar(event)">🤗 Abrazar</button>
+
   </div>
 
 </div>
@@ -38,18 +40,18 @@
 </audio>
 
 <script>
-function abrirCarta(carta){
 
+function abrirCarta(carta){
   carta.classList.toggle("abierta");
 
-  let musica=document.getElementById("musica");
+  const musica=document.getElementById("musica");
   musica.play().catch(()=>{});
 }
 
 function abrazar(e){
   e.stopPropagation();
 
-  for(let i=0;i<25;i++){
+  for(let i=0;i<30;i++){
     let corazon=document.createElement("div");
     corazon.className="corazon";
     corazon.innerHTML="💖";
@@ -57,9 +59,12 @@ function abrazar(e){
     corazon.style.top=Math.random()*100+"vh";
     document.body.appendChild(corazon);
 
-    setTimeout(()=>corazon.remove(),2000);
+    setTimeout(()=>{
+      corazon.remove();
+    },2000);
   }
 }
+
 </script>
 
 </body>
