@@ -82,9 +82,10 @@ body{
   </div>
 </div>
 
-  <audio id="cancion" loop>
+<audio id="cancion" loop>
+  
   <source src="cancion.mp3" type="audio/mpeg">
-  <source src="cancion.ogg" type="audio/ogg">
+  <source src="cancion.ogg" type="audio/ogg"> 
     
 </audio>
 
@@ -92,13 +93,15 @@ body{
 function abrirCarta(carta){
   carta.classList.toggle("abierta");
 
-  let musica = document.getElementById("musica");
-  musica.play();
+  const musica = document.getElementById("musica");
+  musica.currentTime = 0;
+  musica.play().catch(()=>{});
 }
 </script>
 
 </body>
 </html>
+
 
 
 
