@@ -3,66 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carta 💌</title>
+<title>Carta de Amor</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.cc">
+
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#ffe6f0;
+font-family:'Dancing Script',cursive;
+overflow:hidden;
+}
+
+.sobre{
+width:90%;
+max-width:400px;
+height:500px;
+background:white;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+text-align:center;
+animation:abrir 1.2s ease;
+}
+
+@keyframes abrir{
+from{transform:scale(0.6) rotateX(90deg);opacity:0;}
+to{transform:scale(1) rotateX(0deg);opacity:1;}
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:15px;
+background:#ff4d88;
+color:white;
+font-size:18px;
+margin-top:15px;
+}
+
+.corazon{
+position:fixed;
+font-size:24px;
+animation:caer 3s linear forwards;
+}
+
+@keyframes caer{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);opacity:0;}
+}
+</style>
+
 </head>
+
 <body>
 
-<div class="carta" onclick="abrirCarta(this)">
+<div class="sobre">
+<h2>Para Ti ❤️</h2>
 
-  <div class="sobre">
-    💌 Tócame
-  </div>
+<p>
+Amorcito mio, se que te hago enojar demasiado, se que muchas veces dudas de esto, se que te aburro a veces, pero de verdad creeme que yo te quiero y te amo demasiado, a pesar de a veces no comprenderte del todo trato de no hacerte enojar o dar colera pero se complica el asunto, creeme que quiero ser el indicado para ti y que todo esto valga la pena, asi que me estoy esforzando mucho y más de lo que crees para no decepcionarte. Espero que comprendas mis palabras y acciones, yo quiero tener una vida feliz contigo x siempre a pesar de las peleas q te encantan q te tengamos. Te amo mucho besos mua mua.
+</p>
 
-  <div class="contenido">
-
-    <p>
-    Amorcito mio, se que te hago enojar demasiado, se que muchas veces dudas de esto,
-    se que te aburro a veces, pero de verdad creeme que yo te quiero y te amo demasiado,
-    a pesar de a veces no comprenderte del todo trato de no hacerte enojar o dar colera
-    pero se complica el asunto, creeme que quiero ser el indicado para ti y que todo esto
-    valga la pena, asi que me estoy esforzando mucho y más de lo que crees para no decepcionarte.
-    Espero que comprendas mis palabras y acciones, yo quiero tener una vida feliz contigo x siempre
-    a pesar de las peleas q te encantan q te tengamos. Te amo mucho besos mua mua.
-    </p>
-
-    <button onclick="abrazar(event)">🤗 Abrazar</button>
-
-  </div>
-
+<button onclick="abrazar()">🤗 Abrazar</button>
 </div>
 
-<audio id="musica" loop>
-<source src="cancion.mp3" type="audio/mpeg">
-</audio>
+<audio id="musica" src="cancion.mp3" loop></audio>
 
 <script>
 
-function abrirCarta(carta){
-  carta.classList.toggle("abierta");
+let musicaIniciada=false;
 
-  const musica=document.getElementById("musica");
-  musica.play().catch(()=>{});
+function iniciarMusica(){
+if(!musicaIniciada){
+document.getElementById("musica").play();
+musicaIniciada=true;
+}
 }
 
-function abrazar(e){
-  e.stopPropagation();
+document.body.addEventListener("click", iniciarMusica);
 
-  for(let i=0;i<30;i++){
-    let corazon=document.createElement("div");
-    corazon.className="corazon";
-    corazon.innerHTML="💖";
-    corazon.style.left=Math.random()*100+"vw";
-    corazon.style.top=Math.random()*100+"vh";
-    document.body.appendChild(corazon);
+function abrazar(){
 
-    setTimeout(()=>{
-      corazon.remove();
-    },2000);
-  }
+iniciarMusica();
+
+for(let i=0;i<25;i++){
+
+let corazon=document.createElement("div");
+corazon.classList.add("corazon");
+corazon.innerHTML="❤️";
+
+corazon.style.left=Math.random()*100+"vw";
+corazon.style.fontSize=(20+Math.random()*30)+"px";
+
+document.body.appendChild(corazon);
+
+setTimeout(()=>{corazon.remove();},3000);
+}
 }
 
 </script>
