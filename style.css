@@ -1,62 +1,94 @@
-/* 🌙 Fondo nocturno animado */
 body{
-  margin:0;
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:'Segoe Script',cursive;
-
-  background: linear-gradient(180deg,#0b0f2b,#1a1f4f,#2a2f73);
-  position:relative;
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Dancing Script',cursive;
+overflow:hidden;
 }
 
-/* ✨ capa de estrellas */
-body::before,
-body::after{
-  content:"";
-  position:fixed;
-  top:0;
-  left:0;
-  width:200%;
-  height:200%;
-  pointer-events:none;
-  background-repeat:repeat;
-  animation: estrellas 60s linear infinite;
-  z-index:0;
-}
-
-/* estrellas pequeñas */
-body::before{
-  background-image:
-    radial-gradient(white 1px, transparent 1px);
-  background-size:50px 50px;
-  opacity:0.4;
-}
-
-/* estrellas grandes */
-body::after{
-  background-image:
-    radial-gradient(#fff 2px, transparent 2px);
-  background-size:120px 120px;
-  opacity:0.6;
-  animation-duration:90s;
-}
-
-/* movimiento suave */
-@keyframes estrellas{
-  from{
-    transform:translate(0,0);
-  }
-  to{
-    transform:translate(-500px,-500px);
-  }
-}
-
-/* 💌 carta encima del fondo */
+/* 💌 carta */
 .carta{
-  position:relative;
-  z-index:2;
-  box-shadow:0 0 25px rgba(255,255,255,0.2);
+width:90%;
+max-width:340px;
+height:260px;
+position:relative;
+perspective:1000px;
+z-index:2;
+}
+
+/* sobre */
+.sobre{
+width:100%;
+height:100%;
+background:#ffb6c1;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:12px;
+font-size:22px;
+transition:0.8s;
+transform-origin:top;
+}
+
+/* contenido */
+.contenido{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+padding:15px;
+box-sizing:border-box;
+border-radius:12px;
+opacity:0;
+transform:translateY(100%);
+transition:0.8s;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+text-align:center;
+font-size:15px;
+}
+
+/* abrir carta */
+.abierta .sobre{
+transform:rotateX(180deg);
+}
+
+.abierta .contenido{
+opacity:1;
+transform:translateY(0);
+}
+
+/* boton */
+button{
+border:none;
+padding:8px;
+border-radius:8px;
+background:#ff6fa5;
+color:white;
+font-size:16px;
+}
+
+/* corazones */
+.corazon{
+position:fixed;
+font-size:22px;
+animation:flotar 2s linear forwards;
+pointer-events:none;
+}
+
+@keyframes flotar{
+0%{transform:translateY(0) scale(1);opacity:1;}
+100%{transform:translateY(-150px) scale(1.6);opacity:0;}
+}
+
+/* celular */
+@media(max-width:480px){
+.contenido{
+font-size:14px;
+}
 }
