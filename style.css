@@ -1,0 +1,62 @@
+/* 🌙 Fondo nocturno animado */
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Segoe Script',cursive;
+
+  background: linear-gradient(180deg,#0b0f2b,#1a1f4f,#2a2f73);
+  position:relative;
+}
+
+/* ✨ capa de estrellas */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:200%;
+  height:200%;
+  pointer-events:none;
+  background-repeat:repeat;
+  animation: estrellas 60s linear infinite;
+  z-index:0;
+}
+
+/* estrellas pequeñas */
+body::before{
+  background-image:
+    radial-gradient(white 1px, transparent 1px);
+  background-size:50px 50px;
+  opacity:0.4;
+}
+
+/* estrellas grandes */
+body::after{
+  background-image:
+    radial-gradient(#fff 2px, transparent 2px);
+  background-size:120px 120px;
+  opacity:0.6;
+  animation-duration:90s;
+}
+
+/* movimiento suave */
+@keyframes estrellas{
+  from{
+    transform:translate(0,0);
+  }
+  to{
+    transform:translate(-500px,-500px);
+  }
+}
+
+/* 💌 carta encima del fondo */
+.carta{
+  position:relative;
+  z-index:2;
+  box-shadow:0 0 25px rgba(255,255,255,0.2);
+}
